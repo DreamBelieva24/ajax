@@ -1,9 +1,23 @@
 var topics = ["dog", "monkey", "bird", "turtle", "seahorse"]
 
+
+//not working
+
+$("#newItem").on("click", function () {
+  
+  var input = document.getElementsByName("inputBox").value;
+
+  topics.push(input);
+  
+  console.log("input = " + input)
+
+})
+
 for (i = 0; i < topics.length; i++) {
   $("#buttons").append("<button data-animal='" + topics[i] + "'>" + topics[i] + "</button>  ")
 
   console.log(topics[i]);
+
 }
 
 $("button").on("click", function () {
@@ -51,7 +65,7 @@ $("button").on("click", function () {
               $(this).attr("src", $(this).attr("data-still"))
               $(this).attr("data-state", "still")
             }
-            
+            //Only working for every other picture???
           });
         
 
