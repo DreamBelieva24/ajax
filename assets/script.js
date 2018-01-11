@@ -1,26 +1,25 @@
 var topics = ["dog", "monkey", "bird", "turtle", "seahorse"]
 
 
-//not working
+//new button doesn't work
 
 $("#newItem").on("click", function () {
-  
-  var input = document.getElementsByName("inputBox").value;
+  event.preventDefault();
+
+  var input = $("#inputBox").val().trim();
 
   topics.push(input);
-  
-  console.log("input = " + input)
+
+  $("#buttons").append("<button data-animal= ' " + input + " ' class=animalButton>" + input + "</button>  ")
 
 })
 
 for (i = 0; i < topics.length; i++) {
-  $("#buttons").append("<button data-animal='" + topics[i] + "'>" + topics[i] + "</button>  ")
-
-  console.log(topics[i]);
+  $("#buttons").append("<button data-animal= ' " + topics[i] + " ' class=animalButton>" + topics[i] + "</button>  ")
 
 }
 
-$("button").on("click", function () {
+$(".animalButton").on("click", function () {
   var animal = $(this).attr("data-animal");
   var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
     animal + "&api_key=dc6zaTOxFJmzC&limit=10";
@@ -29,9 +28,6 @@ $("button").on("click", function () {
     url: queryURL,
     method: "GET"
   }).done(function (response) {
-
-
-    console.log(response);
 
     var results = response.data;
 
